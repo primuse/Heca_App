@@ -1,0 +1,28 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+    <table class="table table-hover" style = "width:1300px">
+        <thead class="thead-light">
+            <tr>
+                <th>Client Name</th>
+                <th>Project Type</th>
+                <th>Status</th>
+                <th>Team Lead</th>
+                <th>Start Date</th>
+                <th>Date Due</th>
+            </tr>
+        </thead>
+        {% for post in posts %}
+        <tbody>
+            <tr>
+                <td><a href="/project/{{ post.id }}/">{{ post.client_name }}</a></td>
+                <td>{{ post.project_type }}</td>
+                <td>{{ post.status }}</td>
+                <td>{{ post.team_lead }}</td>
+                <td>{{ post.date_started }}</td>
+                <td>{{ post.date_due }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

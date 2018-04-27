@@ -1,0 +1,36 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+    <div id ="top">
+        <a href="{% url 'project_edit' post_id=post.id %}" class="btn btn-info btn-sm"><span>Edit</span></a>
+        <a href="{% url 'project_delete' post_id=post.id %}" class="btn btn-info btn-sm"><span>Delete</span></a>
+    </div>
+    <div class="body">
+        <div class="row">
+            <div class="col-sm-3"><span class="small">Category: {{ post.project_type }}</span></div>
+            <div class="col-sm-3"><span class="small">Team Lead: {{ post.team_lead }}</span></div>
+            {% if post.date_completed %}
+            <div class="col-sm-3"><span class="small">Date completed: {{ post.date_completed }}</span></div>
+            {% elif post.date_due %}
+            <div class="col-sm-3"><span class="small">Due Date: {{ post.date_due }}</span></div>
+            {% else %}
+            <div class="col-sm-3"><a href="{% url 'project_start' post_id=post.id %}" class="small"><span>Start Project</span></a></div>
+            {% endif %}
+        </div>
+        <div id="client">{{ post.client_name }}</div>
+        <div id="desc">
+            <p>{{ post.description|linebreaksbr }}</p>
+        </div>
+        <div>
+            <p id="tools">Tools Needed:</p>
+            <p>{{ post.tools_needed }}</p>
+        </div>
+        <div>
+            {% if post.date_completed %}
+                <p>Completed</p>
+            {% else %}
+                <a href="{% url 'project_complete' post_id=post.id %}"><h3>Complete Project</h3></a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
