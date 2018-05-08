@@ -6,6 +6,7 @@
         <a href="{% url 'project_delete' post_id=post.id %}" class="btn btn-info btn-sm"><span>Delete</span></a>
     </div>
     <div class="body">
+        <div id="client">{{ post.client_name }}</div>
         <div class="row">
             <div class="col-sm-3"><span class="small">Category: {{ post.project_type }}</span></div>
             <div class="col-sm-3"><span class="small">Team Lead: {{ post.team_lead }}</span></div>
@@ -17,8 +18,8 @@
             <div class="col-sm-3"><a href="{% url 'project_start' post_id=post.id %}" class="small"><span>Start Project</span></a></div>
             {% endif %}
         </div>
-        <div id="client">{{ post.client_name }}</div>
-        <div id="desc">
+        
+        <div id="desc" style="width: 100%; height: auto " > 
             <p>{{ post.description|linebreaksbr }}</p>
         </div>
         <div>

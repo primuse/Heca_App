@@ -1,9 +1,21 @@
 {% extends 'projects/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
-    <h1>New Project</h1>
-    <form method="POST" class="project-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    
+    <div class="container-fluid w-75 p-3">
+        <div class="new"><h1>New Project</h1></div>
+        <form method="POST">{% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="form-group text-primary font-weight-bold">
+                    {{ field.label_tag }}
+                    {% render_field field class="form-control" %}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>   
 {% endblock %}
